@@ -1,6 +1,8 @@
-import path from 'path';
-import { defineConfig } from 'vite';
-import pugPlugin from 'vite-plugin-pug';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   base: '/labs09/', // Заміни на '/landing-keepsake-vite/', якщо перейменуєш репозиторій
