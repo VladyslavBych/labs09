@@ -1,25 +1,20 @@
-import vituum from 'vituum';
-import pug from '@vituum/vite-plugin-pug';
+import path from 'path';
+import { defineConfig } from 'vite';
+import pugPlugin from 'vite-plugin-pug';
 
-
-
-export default ({ command }) => ({
-  base: command === 'build' ? '/landing-keepsake-vite/' : '/',
-  plugins: [
-    vituum({
-      imports: {
-        filenamePattern: {
-          '+.css': [],
-          '+.scss': [],
-        },
-      },
-    }),
-    pug({ root: './src' }),
-  ],
+export default defineConfig({
+  base: '/labs09/', // Заміни на '/landing-keepsake-vite/', якщо перейменуєш репозиторій
+  plugins: [pugPlugin()],
   resolve: {
     alias: {
-      '@': path.resolve(import.meta.dirname, 'src'),
-      '@assets': path.resolve(import.meta.dirname, 'src/assets'),
+      '@': path.resolve(__dirname, './src'),
     },
+  },
+  css: {
+    devSourcemap: true,
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
   },
 });
